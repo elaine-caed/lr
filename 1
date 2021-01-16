@@ -1,0 +1,98 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main()
+{
+    double A[10], B[10], C[10], max1=0, max2=0, max3=0, differenceA, differenceB, differenceC;
+    for(int k = 0; k< 10; k++)
+    {
+        *(A+k) = rand()%10;
+        *(B+k) = k * sin(2 * (double)k) + 2 * k * cos((double)k);
+
+        if(*(A+k)>*(B+k))
+        {
+            *(C+k)=*(A+k);
+        }
+        else
+        {
+            *(C+k)=*(B+k);
+        }
+        if(max1<*(A+k))
+        {
+            max1=*(A+k);
+        }
+        if(max2<*(B+k))
+        {
+            max2=*(B+k);
+        }
+        if(max3<*(C+k))
+        {
+            max3=*(C+k);
+        }
+    }
+    ////////////////////////////////////////////////////////////////////////////////
+    double min1=max1, min2=max2, min3=max3;
+    for (int i = 0; i< 10; i++)
+    {
+        
+        if(min1>*(A+i))
+        {
+            min1=*(A+i);
+        }
+        if(min2>*(B+i))
+        {
+            min2=*(B+i);
+        }
+        if(min3>*(C+i))
+        {
+            min3=*(C+i);
+        }
+    }
+    ///////////////////////////////////////////////////////////////////
+    for ( int i = 10; i > 0; i-- )
+    {
+        for ( int j = 1; j < i; j++ )
+        {
+            if ( A[j-1] > A[j] )
+            {
+                double x = A[j-1];
+                A[j-1] = A[j];
+                A[j] = x;
+            }
+            if ( B[j-1] > B[j] )
+            {
+                double y = B[j-1];
+                B[j-1] = B[j];
+                B[j] = y;
+            }
+            if ( C[j-1] > C[j] )
+            {
+                double z = C[j-1];
+                C[j-1] = C[j];
+                C[j] = z;
+            }
+        }
+    }
+    for (int i = 0; i < 10; i++)
+    {
+        cout << *(A+i) << " ";
+    }
+    cout<<endl;
+    for (int i = 0; i < 10; i++)
+    {
+        cout << *(B+i) << " ";
+    }
+    cout<<endl;
+    for (int i = 0; i < 10; i++)
+    {
+        cout << *(C+i) << " ";
+    }
+    cout<<endl;
+    differenceA=max1-min1;
+    differenceB=max2-min2;
+    differenceC=max3-min3;
+    cout<<"Difference A = "<<differenceA<<endl;
+    cout<<"Difference B = "<<differenceB<<endl;
+    cout<<"Difference C = "<<differenceC<<endl;
+    return 0;
+}
